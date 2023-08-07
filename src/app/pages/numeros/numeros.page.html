@@ -1,15 +1,44 @@
-
 <ion-content>
+
+  
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <app-header></app-header>
 
-  <ion-list>
-    <ion-item *ngFor="let item of dataFromService" (click)="obtenerUbicacionActual(item.number)">
-      <ion-label>{{ item.number }}</ion-label>
-      <ion-icon name="star-outline" *ngIf="item.prioridad === '1'"></ion-icon>
-    </ion-item>
-  </ion-list>
-  
-  
+  <div style="display: flex; width: 100%; height: 80%; align-items: center; flex-direction: column;">
+
+    <div style="width: 100%; display: flex; justify-content: center;">
+      <ion-button (click)="agregar()" class="botonSecondary" style="width: 80%;">
+        Agregar numero
+      </ion-button>
+    </div>
+    <div style="width: 100%;">
+      <ion-list>
+
+        <ion-item-sliding *ngFor="let item of dataFromService">
+          <ion-item>
+            <ion-label>{{ item.number }}</ion-label>
+            <ion-icon name="star-outline" *ngIf="item.prioridad === '1'"></ion-icon>
+          </ion-item>
+      
+          <ion-item-options>
+            <ion-item-option color="danger" style="height: 50px;" (click)="borrarNumero(item.id_number)">Delete</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding> 
+        
+      </ion-list>
+      
+
+    </div>
+
+
+
+
+  </div>
+
+
+
 
 </ion-content>

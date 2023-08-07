@@ -61,6 +61,18 @@ export class InicioPage implements OnInit {
 
 
   }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+      
+    }, 1000);
+
+
+
+  }
+
   
 
 }

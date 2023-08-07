@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'numeros',
     loadChildren: () => import('./pages/numeros/numeros.module').then( m => m.NumerosPageModule)
   },
+  {
+    path: 'agregar-numero',
+    loadChildren: () => import('./pages/agregar-numero/agregar-numero.module').then( m => m.AgregarNumeroPageModule)
+  },
 ];
 
 @NgModule({

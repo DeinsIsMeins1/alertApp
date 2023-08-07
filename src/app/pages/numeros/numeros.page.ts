@@ -75,4 +75,52 @@ export class NumerosPage implements OnInit {
 
   }
 
+  agregar(){
+    this.router.navigate(['/agregar-numero']);
+  }
+
+  borrarNumero(id: number){
+    console.log('Borrar',id);
+    
+
+    //Guardamos el usuario y la contraseña en una variable para mandarla a LoginEmpleado en proveedor
+    const datosPersonales = "id_number=" + id;
+
+
+    console.log(datosPersonales);
+    
+    // this.variables.showLoader('Registrando...');
+
+    this.variables.eliminarNumero(datosPersonales).subscribe(
+      async (dataReturnFromService: any) => {
+
+        //Obtenemos la respuesta del API en dataReturnFromService
+        //Guardamos la variable del api dentro de this.dataFromService
+        this.dataFromService = (dataReturnFromService);
+
+        this.variables.presentToast('Numero borrado correctamente');
+
+        this.obtenerNumeros()
+
+        // this.router.navigate(['/numeros']);
+
+        // this.variables.hideLoader();
+
+      },
+    );
+  }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+      this.obtenerNumeros();
+    }, 1000);
+
+
+
+  }
+
+  
+
 }

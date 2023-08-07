@@ -108,6 +108,48 @@ export class VariablesService {
     );
   }
 
+  /**
+ * 
+ * @param dataToSend 
+ * @returns 
+ */
+  registrarNumero(dataToSend: any) {
+    const endPoint = 'registroNumero?';
+
+    const url = this.appConfig.urlNumber + endPoint + dataToSend;
+    const headers = this.getHttpHeaders();
+
+    return this.http.post(url, null, { headers: headers, responseType: 'text' }).pipe(
+      timeout(this.appConfig.tiempoConexion),
+      catchError((error: any) => {
+        this.errorServer(error);
+
+        throw error;
+      })
+    );
+  }
+
+   /**
+ * 
+ * @param dataToSend 
+ * @returns 
+ */
+   eliminarNumero(dataToSend: any) {
+    const endPoint = 'eliminarNumero?';
+
+    const url = this.appConfig.urlNumber + endPoint + dataToSend;
+    const headers = this.getHttpHeaders();
+
+    return this.http.delete(url, { headers: headers, responseType: 'text' }).pipe(
+      timeout(this.appConfig.tiempoConexion),
+      catchError((error: any) => {
+        this.errorServer(error);
+
+        throw error;
+      })
+    );
+  }
+
 
   /**
    * 
