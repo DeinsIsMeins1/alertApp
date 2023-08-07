@@ -35,7 +35,7 @@ export class RegisterPage implements OnInit {
     this.pass = encodeURIComponent(this.pass);
 
     //Guardamos el usuario y la contraseña en una variable para mandarla a LoginEmpleado en proveedor
-    const datosPersonales = "name=" + this.email + "&email=" + this.email + "&password=" + this.pass;
+    const datosPersonales = "name=" + this.name + "&email=" + this.email + "&password=" + this.pass;
 
     this.variables.showLoader('Registrando...');
 

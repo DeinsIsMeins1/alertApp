@@ -11,6 +11,7 @@ export class VariablesService {
   public appConfig = {
     flagProduccion: false,                                         // Bandera para indica si está en producción o en QA
     url: 'https://ahumada.bsite.net/api/Users/',  // URL de API PROD
+    urlNumber: 'https://ahumada.bsite.net/api/Numbers/',  // URL de API PROD
 
     versionIos: '1.0.0',                                  // Versión de iOS en APP
     versionAndroid: '1.0.0',                                  // Versión de Android en APP
@@ -72,27 +73,40 @@ export class VariablesService {
     );
   }
 
-    /**
-   * 
-   * @param dataToSend 
-   * @returns 
-   */
-    register(dataToSend: any) {
-      const endPoint = 'Register?';
-    
-      const url = this.appConfig.url + endPoint + dataToSend;
-      const headers = this.getHttpHeaders();
-    
-      return this.http.post(url, null, { headers: headers, responseType: 'text' }).pipe(
-        timeout(this.appConfig.tiempoConexion),
-        catchError((error: any) => {
-          this.errorServer(error);
-    
-          throw error;
-        })
-      );
-    }
+  /**
+ * 
+ * @param dataToSend 
+ * @returns 
+ */
+  register(dataToSend: any) {
+    const endPoint = 'Register?';
 
+    const url = this.appConfig.url + endPoint + dataToSend;
+    const headers = this.getHttpHeaders();
+
+    return this.http.post(url, null, { headers: headers, responseType: 'text' }).pipe(
+      timeout(this.appConfig.tiempoConexion),
+      catchError((error: any) => {
+        this.errorServer(error);
+
+        throw error;
+      })
+    );
+  }
+
+  obtenerNumeros(dataToSend: any) {
+    const endPoint = 'obtenerNumeros?';
+
+    return this.http.get(this.appConfig.urlNumber + endPoint + dataToSend, { headers: this.getHttpHeaders() }).pipe(
+      timeout(this.appConfig.tiempoConexion),
+      catchError((err) => {
+
+        this.errorServer(err.error);
+
+        throw err;
+      })
+    );
+  }
 
 
   /**

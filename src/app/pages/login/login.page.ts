@@ -46,6 +46,10 @@ export class LoginPage implements OnInit {
         this.dataFromService = (dataReturnFromService);
         console.log('--------------Respuesta', this.dataFromService);
 
+        
+        // Guardar una variable en el localStorage
+        localStorage.setItem('nombre', this.dataFromService.name);
+        localStorage.setItem('id', this.dataFromService.id_user);
         this.router.navigate(['/inicio']);
 
         this.variables.hideLoader('');
@@ -59,7 +63,7 @@ export class LoginPage implements OnInit {
     );
   }
 
-  registro(){
+  registro() {
     this.router.navigate(['/register']);
   }
 
