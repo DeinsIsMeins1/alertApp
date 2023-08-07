@@ -18,7 +18,7 @@
       <ion-list>
 
         <ion-item-sliding *ngFor="let item of dataFromService">
-          <ion-item>
+          <ion-item (click)="obtenerUbicacionActual(item.number)">
             <ion-label>{{ item.number }}</ion-label>
             <ion-icon name="star-outline" *ngIf="item.prioridad === '1'"></ion-icon>
           </ion-item>

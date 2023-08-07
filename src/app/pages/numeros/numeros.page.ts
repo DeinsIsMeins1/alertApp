@@ -33,7 +33,7 @@ export class NumerosPage implements OnInit {
     const id = localStorage.getItem('id');
 
     //Guardamos el usuario y la contraseña en una variable para mandarla a LoginEmpleado en proveedor
-    const datosPersonales = "id_user=" + '1';
+    const datosPersonales = "id_user=" + id;
 
 
     this.variables.obtenerNumeros(datosPersonales).subscribe(
