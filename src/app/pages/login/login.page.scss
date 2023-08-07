@@ -1,0 +1,62 @@
+.itemFormulario {
+  border: 1px solid #fff;
+  --border-color: var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-150, rgb(255, 255, 255))));
+}
+
+
+.inputFormulario {
+  border: 0px solid #000;
+  border-radius: 8px;
+  background: #fff;
+  min-height: 35px;
+  padding-left: 17px;
+}
+
+ion-item.sc-ion-input-md-h:not(.item-label):not(.item-has-modern-input),
+ion-item:not(.item-label):not(.item-has-modern-input) .sc-ion-input-md-h {
+  --padding-start: 18px;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: black;
+}
+
+
+.text {
+  padding: 0 10px;
+  text-align: center;
+}
+
+.inputFormulario {
+  border: 1px solid #c7c7c7;
+  min-height: 28px !important;
+  --padding-start: 10px;
+}
+
+.divInput {
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+h1{
+  color: rgb(0, 0, 0);
+  overflow: hidden; 
+  border-right: .15em solid white;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 3s steps(5, end), blink-cared .75s step-end infinite;
+  margin-top: 50px;
+  text-shadow: -1.5px 0 0 rgba(255,0,0,.7), 1.5px 0 0 rgba(0,255,255,.7);
+}
+
+@keyframes typing {
+  from {width: 0} to {width: 20%;}
+}
+
+@keyframes blink-cared {
+  from, to {border-color: transparent;}
+  50% {border-color: rgb(0, 0, 0);}
+}
