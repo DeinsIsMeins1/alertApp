@@ -49,6 +49,7 @@ export class LoginPage implements OnInit {
         
         // Guardar una variable en el localStorage
         localStorage.setItem('nombre', this.dataFromService.name);
+        localStorage.setItem('dentro', '1');
         localStorage.setItem('id', this.dataFromService.id_user);
         this.router.navigate(['/inicio']);
 

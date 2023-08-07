@@ -12,6 +12,8 @@ const { Geolocation } = Plugins;
 })
 export class InicioPage implements OnInit {
 
+  dataFromService: any;
+
   constructor(
     public variables: VariablesService
   ) { }
@@ -36,6 +38,9 @@ export class InicioPage implements OnInit {
   // }
 
   async obtenerUbicacionActual() {
+
+
+
     try {
       const position = await Geolocation['getCurrentPosition']();
       const lat = position.coords.latitude;
@@ -43,7 +48,25 @@ export class InicioPage implements OnInit {
 
       this.variables.presentToast('Latitud: '+lat+'y longitud: '+lng);
 
-      this.abrirGoogleMaps(lat,lng);
+      const id = localStorage.getItem('id');
+
+      //Guardamos el usuario y la contraseña en una variable para mandarla a LoginEmpleado en proveedor
+      const datosPersonales = "id_user=" + id;
+  
+  
+      this.variables.obtenerNumPrioridad(datosPersonales).subscribe(
+        async (dataReturnFromService: any) => {
+  
+          //Obtenemos la respuesta del API en dataReturnFromService
+          //Guardamos la variable del api dentro de this.dataFromService
+          this.dataFromService = (dataReturnFromService);
+
+          this.abrirGoogleMaps(lat,lng);
+          
+        },
+      );
+
+      
       
     } catch (error) {
       console.error('Error al obtener la ubicación', error);
@@ -52,26 +75,17 @@ export class InicioPage implements OnInit {
   }
 
   async abrirGoogleMaps(lat: number, lng: number) {
+    
 
-    const phoneNumber = '7831369023';
     const message = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
     const encodedMessage = encodeURIComponent(message);
 
-    window.location.href = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    window.location.href = `https://api.whatsapp.com/send?phone=${this.dataFromService}&text=${encodedMessage}`;
 
 
   }
 
-  handleRefresh(event: any) {
-    setTimeout(() => {
-      // Any calls to load data go here
-      event.target.complete();
-      
-    }, 1000);
 
-
-
-  }
 
   
 

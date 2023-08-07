@@ -79,6 +79,23 @@ export class NumerosPage implements OnInit {
     this.router.navigate(['/agregar-numero']);
   }
 
+  agregarFavorito(number: number){
+
+
+
+    const datosPersonales = "id_number=" + number;
+
+    this.variables.actualizarPrioridadNumero(datosPersonales).subscribe(
+      async (dataReturnFromService: any) => {
+
+        //Obtenemos la respuesta del API en dataReturnFromService
+        //Guardamos la variable del api dentro de this.dataFromService
+        this.dataFromService = (dataReturnFromService);
+        this.obtenerNumeros();
+      },
+    );
+  }
+
   borrarNumero(id: number){
     console.log('Borrar',id);
     

@@ -18,7 +18,15 @@ export class WelcomePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    const online = localStorage.getItem('dentro');
+  
+    if (!online) {
+      return;
+    }
+  
+    this.router.navigate(['/inicio']);
   }
+  
 
   onSubmit() {
     this.router.navigate(['/login']);

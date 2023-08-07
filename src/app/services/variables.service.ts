@@ -13,8 +13,8 @@ export class VariablesService {
     url: 'https://ahumada.bsite.net/api/Users/',  // URL de API PROD
     urlNumber: 'https://ahumada.bsite.net/api/Numbers/',  // URL de API PROD
 
-    versionIos: '1.0.0',                                  // Versión de iOS en APP
-    versionAndroid: '1.0.0',                                  // Versión de Android en APP
+    versionIos: '1.2.0',                                  // Versión de iOS en APP
+    versionAndroid: '1.2.0',                                  // Versión de Android en APP
     buildIos: '202308061806',                           // Versión del Build de iOS en APP
     buildAndroid: '202308061806',                           // Versión del Build de Android en APP
     tiempoIntervalo: 600000,                                    //Tiempo para los intervalos de recarga en permisos
@@ -125,6 +125,41 @@ export class VariablesService {
         this.errorServer(error);
 
         throw error;
+      })
+    );
+  }
+
+   /**
+ * 
+ * @param dataToSend 
+ * @returns 
+ */
+   actualizarPrioridadNumero(dataToSend: any) {
+    const endPoint = 'prioridadNumero?';
+
+    const url = this.appConfig.urlNumber + endPoint + dataToSend;
+    const headers = this.getHttpHeaders();
+
+    return this.http.post(url, null, { headers: headers, responseType: 'text' }).pipe(
+      timeout(this.appConfig.tiempoConexion),
+      catchError((error: any) => {
+        this.errorServer(error);
+
+        throw error;
+      })
+    );
+  }
+
+  obtenerNumPrioridad(dataToSend: any) {
+    const endPoint = 'obtenerPrioridad?';
+
+    return this.http.get(this.appConfig.urlNumber + endPoint + dataToSend, { headers: this.getHttpHeaders() }).pipe(
+      timeout(this.appConfig.tiempoConexion),
+      catchError((err) => {
+
+        this.errorServer(err.error);
+
+        throw err;
       })
     );
   }

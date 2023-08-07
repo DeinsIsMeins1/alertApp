@@ -24,10 +24,6 @@ export class AgregarNumeroPage implements OnInit {
   }
 
   onSubmit() {
-
-    const valorPrioridad = this.prioridad ? '1' : '0';
-    
-    console.log('Valor de prioridad:', valorPrioridad);
     
     //Valido que no esté vacio los campos
     if (this.number === '') {
@@ -39,7 +35,7 @@ export class AgregarNumeroPage implements OnInit {
 
 
     //Guardamos el usuario y la contraseña en una variable para mandarla a LoginEmpleado en proveedor
-    const datosPersonales = "id_user=" + id + "&number=" + this.number + "&prioridad=" + valorPrioridad;
+    const datosPersonales = "id_user=" + id + "&number=" + this.number + "&prioridad=" + '0';
 
 
     console.log(datosPersonales);
