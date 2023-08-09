@@ -15,7 +15,7 @@
       </ion-button>
     </div>
     <div style="width: 100%;">
-      <ion-list>
+      <ion-list *ngIf="cargado">
 
         <ion-item-sliding *ngFor="let item of dataFromService">
 
@@ -34,7 +34,26 @@
         </ion-item-sliding> 
         
       </ion-list>
+
+
+      <ion-list *ngIf="!cargado">
+
+        <ion-item-sliding *ngFor="let item of [1,1,1,1,1]">
+
+          <ion-item-options side="start">
+            <ion-item-option color="success" style="height: 50px;">Favorito</ion-item-option>
+          </ion-item-options>
+
+          <ion-item>
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </ion-item>
       
+          <ion-item-options>
+            <ion-item-option color="danger" style="height: 50px;">Borrar</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding> 
+        
+      </ion-list>
 
     </div>
 

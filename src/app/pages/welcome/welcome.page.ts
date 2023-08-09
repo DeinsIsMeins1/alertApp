@@ -18,18 +18,24 @@ export class WelcomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    const online = localStorage.getItem('dentro');
-  
-    if (!online) {
-      return;
-    }
-  
-    this.router.navigate(['/inicio']);
+   
   }
   
 
   onSubmit() {
-    this.router.navigate(['/login']);
+
+    debugger
+
+    const online = localStorage.getItem('dentro');
+  
+    if (!online) {
+      this.router.navigate(['/login']);
+
+      return;
+    }
+  
+    this.router.navigate(['/inicio']);
+    
   }
 
 }

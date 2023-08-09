@@ -15,6 +15,7 @@ const { Geolocation } = Plugins;
 export class NumerosPage implements OnInit {
 
   dataFromService: any;
+  cargado: boolean = false;
 
   constructor(
     public variables: VariablesService,
@@ -30,6 +31,8 @@ export class NumerosPage implements OnInit {
 
   obtenerNumeros() {
 
+    this.cargado = false;
+
     const id = localStorage.getItem('id');
 
     //Guardamos el usuario y la contraseña en una variable para mandarla a LoginEmpleado en proveedor
@@ -43,7 +46,7 @@ export class NumerosPage implements OnInit {
         //Guardamos la variable del api dentro de this.dataFromService
         this.dataFromService = (dataReturnFromService);
         console.log('--------------Respuesta', this.dataFromService);
-
+        this.cargado = true;
       },
     );
   }
